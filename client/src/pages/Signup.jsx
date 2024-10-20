@@ -35,7 +35,7 @@ const navigate = useNavigate()
     } catch (error) {
       setLoading(false)
       setError(true)
-    }
+    } 
    
    
 

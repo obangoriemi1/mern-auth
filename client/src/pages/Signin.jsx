@@ -2,6 +2,7 @@ import  { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { signInStart, signInSuccess, signInFailure } from '../redux/user/userSlice.js'
 import { useDispatch, useSelector } from "react-redux"
+import Oauth from '../components/Oauth.jsx'
 
 const Signin = () => {
 const [formData, setFormData] = useState({})
@@ -19,7 +20,7 @@ const dispatch = useDispatch()
       const response = await fetch ("/api/auth/signin",{
         method: "POST",
         headers:{
-          "content-Type": "application/json",
+          "Content-Type": "application/json",
         },
         body: JSON.stringify(formData)
        
@@ -52,6 +53,7 @@ const dispatch = useDispatch()
           <button disabled={loading} className='bg-slate-800 text-white p-3 rounded-lg uppercase hover:opacity-95 disabled:opacity-80'>
             {loading ? "loading": "Sign in."}
             </button>
+            <Oauth/>
 
         </form>
         <div className="flex gap-4  mt-5">

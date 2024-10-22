@@ -1,5 +1,6 @@
 import  { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
+import Oauth from '../components/Oauth'
 
 
 const Signup = () => {
@@ -19,7 +20,7 @@ const navigate = useNavigate()
       const response = await fetch ("/api/auth/signup",{
         method: "POST",
         headers:{
-          "content-Type": "application/json",
+          "Content-Type": "application/json",
         },
         body: JSON.stringify(formData)
        
@@ -53,6 +54,7 @@ const navigate = useNavigate()
           <button disabled={loading} className='bg-slate-800 text-white p-3 rounded-lg uppercase hover:opacity-95 disabled:opacity-80'>
             {loading ? "loading": "Sign up."}
             </button>
+            <Oauth/>
 
         </form>
         <div className="flex gap-4  mt-5">

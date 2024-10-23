@@ -49,7 +49,7 @@ const Profile = () => {
         allow write : if
         request.resource.size < 2 * 1024 * 1024 &&
        request.resource.contentType.matches("image/.*") */}
-        <img onClick={() => fileRef.current.click()} className='h-24 w-24 self-center cursor-pointer rounded-full object-cover mt-2' src={currentUser.profilePicture}/>
+        <img onClick={() => fileRef.current.click()} className='h-24 w-24 self-center cursor-pointer rounded-full object-cover mt-2' src={formData.profilePicture || currentUser.profilePicture}/>
         <p className='text-sm self-center'>{imageError ? (<span className='text-red-700'>Error uploading image</span>) : imagePercent > 0  && imagePercent < 100 ? (
           <span className='text-slate-700'>{`Uploading: ${imagePercent} %`}</span>) : imagePercent === 100 ? (<span className='text-green-700'>
             image uploaded successfully

@@ -48,8 +48,8 @@ const dispatch = useDispatch()
         </h1>
         <form onSubmit={handleSubmit} className='flex flex-col gap-4'>
          
-          <input onChange={handleChange}  type="email" placeholder='Enter email' id='email' className='bg-slate-100 p-3 rounded-lg'/>
-          <input onChange={handleChange}  type="password" placeholder='Enter password' id='password' className='bg-slate-100 p-3 rounded-lg'/>
+          <input autoComplete='off' onChange={handleChange}  type="email" placeholder='Enter email' id='email' className='bg-slate-100 p-3 rounded-lg'/>
+          <input autoComplete='off'   onChange={handleChange}  type="password" placeholder='Enter password' id='password' className='bg-slate-100 p-3 rounded-lg'/>
           <button disabled={loading} className='bg-slate-800 text-white p-3 rounded-lg uppercase hover:opacity-95 disabled:opacity-80'>
             {loading ? "loading": "Sign in."}
             </button>

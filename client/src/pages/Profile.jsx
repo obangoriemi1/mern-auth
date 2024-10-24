@@ -4,7 +4,7 @@ import {useRef, useState, useEffect} from "react"
 import { getDownloadURL, getStorage, ref, uploadBytesResumable} from "firebase/storage"
 import {app} from "../fireBase.js"
 import {useDispatch} from "react-redux"
-import { deleteUserStart, deleteUserSuccess, deleteserFailure, updateUserStart, updateUserSuccess, updateuserFailure } from '../redux/user/userSlice.js'
+import { deleteUserStart, deleteUserSuccess, deleteserFailure, updateUserStart, updateUserSuccess, updateuserFailure, signOut } from '../redux/user/userSlice.js'
 const Profile = () => {
   const fileRef = useRef(null)
   const dispatch = useDispatch()
@@ -87,6 +87,15 @@ const Profile = () => {
         dispatch(deleteserFailure(error))
       }
     }
+    const handleSignOut = async() =>{
+      try {
+
+        await fetch("/api/auth/signout")
+        dispatch(signOut())
+      } catch (error) {
+        console.log(error)
+      }
+    }
   return (
     <div className='p-3 max-w-lg mx-auto'>
       <h1 className='text-3xl font-semibold text-center my-7'>Profile</h1>
@@ -103,7 +112,7 @@ const Profile = () => {
             image uploaded successfully
           </span>) : ""}
         </p>
-        <input onChange={handleChange} defaultValue={currentUser.name} type='text' id='name' placeholder='Name' className='bg-slate-100 rounded-lg p-3'/>
+        <input  onChange={handleChange} defaultValue={currentUser.name} type='text' id='name' placeholder='Name' className='bg-slate-100 rounded-lg p-3'/>
         <input onChange={handleChange} defaultValue={currentUser.email} type='email' id='email' placeholder='Email' className='bg-slate-100 rounded-lg p-3'/>
         <input onChange={handleChange}  type='password' id='password' placeholder='password' className='bg-slate-100 rounded-lg p-3'/>
         <button className='bg-slate-700 text-white p-3 rounded-lg uppercase hover:opacity-95'>
@@ -112,7 +121,7 @@ const Profile = () => {
       </form>
       <div className='flex justify-between mt-5'>
          <span onClick={handleDeleteAccount} className='text-red-700 9 cursor-pointer'>Delete Account</span>
-         <span className='text-neutral-800 9 cursor-pointer'>Sign out</span>
+         <span onClick={handleSignOut} className='text-neutral-800 9 cursor-pointer'>Sign out</span>
       </div>
       <p className='text-red-600 mt-5'>{error && "something went wrong"}</p>
       <p className='text-green-600 mt-5'>{updateSuccess && "user updated successfully"}</p>
